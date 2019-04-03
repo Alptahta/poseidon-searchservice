@@ -22,7 +22,7 @@ import java.util.Collection;
 
 @SpringBootApplication
 @EnableConfigurationProperties({ApplicationProperties.class})
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 public class SearchserviceApp {
 
     private static final Logger log = LoggerFactory.getLogger(SearchserviceApp.class);

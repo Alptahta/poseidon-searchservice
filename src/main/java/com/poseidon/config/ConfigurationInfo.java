@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Configuration
 @ConfigurationProperties(prefix = "aws")
-public class AwsConfigurationInfo {
+public class ConfigurationInfo {
 
     private String region;
     private String endpoint;

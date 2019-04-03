@@ -1,7 +1,7 @@
 package com.poseidon.security;
 
 /**
- * Constants for Spring Security authorities.
+ * ElasticSearchConstants for Spring Security authorities.
  */
 public final class AuthoritiesConstants {
 

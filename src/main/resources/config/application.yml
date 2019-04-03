@@ -16,7 +16,7 @@
 
 eureka:
     client:
-        enabled: true
+        enabled: false
         healthcheck:
             enabled: true
         fetch-registry: true
@@ -107,6 +107,10 @@ management:
                 auto-time-requests: true
 
 spring:
+    servlet:
+        multipart:
+            max-file-size: 250MB
+            max-request-size: 250MB
     application:
         name: searchservice
     messages:
@@ -170,11 +174,12 @@ jhipster:
 # https://www.jhipster.tech/common-application-properties/
 # ===================================================================
 
-# application:
+#application:
 
-aws.region=
-aws.endpoint=
-aws.serviceName=
-aws.accessKeyId=
-aws.secretKey=
 
+
+# spring:
+#  http:
+#    multipart:
+#      max-file-size: 3072KB
+#      max-request-size: 3072KB /

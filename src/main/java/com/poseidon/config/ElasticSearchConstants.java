@@ -3,7 +3,7 @@ package com.poseidon.config;
 /**
  * Application constants.
  */
-public final class Constants {
+public final class ElasticSearchConstants {
 
     // Regex for acceptable logins
     public static final String LOGIN_REGEX = "^[_.@A-Za-z0-9-]*$";
@@ -23,6 +23,6 @@ public final class Constants {
 
     public static final String EMPTY_RESPONSE = "{}";
     
-    private Constants() {
+    private ElasticSearchConstants() {
     }
 }

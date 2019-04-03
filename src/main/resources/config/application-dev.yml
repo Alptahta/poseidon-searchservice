@@ -122,8 +122,8 @@ jhipster:
 
 # application:
 
-aws.region=
-aws.endpoint=
-aws.serviceName=
-aws.accessKeyId=
-aws.secretKey=
+aws:
+    region: eu-central-1
+    endpoint:
+    serviceName: es
+    accessKeyId:
