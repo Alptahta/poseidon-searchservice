@@ -13,6 +13,23 @@ public class Product {
     private String picture;
     private String information;
 
+
+    public Product() {
+    }
+
+    public Product(String levelOne, String levelTwo, String levelThree, String partNo, String description, String uom, String mtmlUom, String explanation, String picture, String information) {
+        this.levelOne = levelOne;
+        this.levelTwo = levelTwo;
+        this.levelThree = levelThree;
+        this.partNo = partNo;
+        this.description = description;
+        this.uom = uom;
+        this.mtmlUom = mtmlUom;
+        this.explanation = explanation;
+        this.picture = picture;
+        this.information = information;
+    }
+
     public String getLevelOne() {
         return levelOne;
     }

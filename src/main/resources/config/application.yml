@@ -107,10 +107,10 @@ management:
                 auto-time-requests: true
 
 spring:
-    servlet:
-        multipart:
-            max-file-size: 250MB
-            max-request-size: 250MB
+   #servlet:
+    #    multipart:
+     #       max-file-size: 250MB
+      #      max-request-size: 250MB
     application:
         name: searchservice
     messages:
@@ -176,7 +176,11 @@ jhipster:
 
 #application:
 
-
+aws:
+    region: eu-central-1
+    endpoint: 
+    serviceName: es
+    accessKeyId:
 
 # spring:
 #  http:

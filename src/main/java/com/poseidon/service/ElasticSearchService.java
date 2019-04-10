@@ -6,9 +6,10 @@ import com.amazonaws.auth.AWSCredentials;
 import com.amazonaws.auth.DefaultAWSCredentialsProviderChain;
 import com.amazonaws.http.ExecutionContext;
 import com.amazonaws.http.HttpMethodName;
+import com.fasterxml.jackson.core.JsonGenerationException;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.netflix.discovery.converters.Auto;
 import com.poseidon.config.ConfigurationInfo;
 import com.poseidon.config.ElasticSearchConstants;
 import com.poseidon.handlers.AwsResponse;
@@ -20,7 +21,6 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.http.HttpStatus;
 
@@ -42,8 +42,6 @@ public class ElasticSearchService {
 
     @Inject
     private ConfigurationInfo configurationInfo;
-
-
 
     /**
      * Sign the request to AWS ElasticSearch using the AWS4Signer
@@ -117,6 +115,7 @@ public class ElasticSearchService {
         return null;
     }
 
+
     /**
      * Create a new document in ElasticSearch with a given Index, Document Mapping, Document Body, and Document ID
      *
@@ -171,6 +170,18 @@ public class ElasticSearchService {
             }
         }
 
+        return null;
+    }
+
+    /**
+     * Create new Products in ElasticSearch
+     * @param products The product
+     * @throws JsonProcessingException Throws JsonProcessingException when response cannot be parsed
+     */
+    public String createNewProducts(ArrayList<Product> products) throws JsonProcessingException{
+        for (Product product : products) {
+            createNewProduct(product);
+        }
         return null;
     }
 
@@ -255,6 +266,15 @@ public class ElasticSearchService {
     private void createProductQuery(final ProductQuery productQuery, JSONArray array) {
       if(productQuery.getPartNo() != null){
         buildElasticSearchMatchStatement("partNo", productQuery.getPartNo(), array);
+      }
+      if(productQuery.getLevelOne() != null){
+            buildElasticSearchMatchStatement("levelOne", productQuery.getLevelOne(), array);
+      }
+      if(productQuery.getLevelTwo() != null){
+            buildElasticSearchMatchStatement("levelTwo", productQuery.getLevelTwo(), array);
+      }
+      if(productQuery.getLevelThree() != null){
+            buildElasticSearchMatchStatement("levelTheree", productQuery.getLevelThree(), array);
       }
     }
 

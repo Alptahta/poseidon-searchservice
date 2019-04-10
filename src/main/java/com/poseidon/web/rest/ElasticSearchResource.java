@@ -13,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import java.util.ArrayList;
 
 @RestController
 @RequestMapping("/api")
@@ -29,7 +30,7 @@ public class ElasticSearchResource {
      * @param product The Product object
      * @return Response Entity
      */
-    @PostMapping(value = "/create", produces = {MediaType.TEXT_PLAIN_VALUE})
+    @PostMapping(value = "/createProduct", produces = {MediaType.TEXT_PLAIN_VALUE})
     @ResponseBody
     public ResponseEntity<String> createElasticSearchObject(@RequestBody final Product product) {
         String title;
@@ -42,6 +43,27 @@ public class ElasticSearchResource {
             LOGGER.error("Failed to create Product.", e);
         }
         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to create  " + product.getPartNo());
+    }
+
+    /**
+     * Create new Products in ElasticSearch
+     *
+     * @param products The Products Array
+     * @return Response Entity
+     */
+    @PostMapping(value = "/create", produces = {MediaType.TEXT_PLAIN_VALUE})
+    @ResponseBody
+    public ResponseEntity<String> createElasticSearchObjects(@RequestBody final ArrayList<Product> products){
+        String title;
+        try{
+            title = elasticSearchService.createNewProducts(products);
+            if (title != null){
+                return ResponseEntity.status(HttpStatus.OK).body("Successfully created " + title);
+            }
+        } catch (JsonProcessingException e) {
+            LOGGER.error("Failed to create Products.", e);
+        }
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to create products " );
     }
 
     /**
